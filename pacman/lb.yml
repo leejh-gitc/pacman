@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  namespace: leejh-test
+  name: test
+  annotations:
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS":443}]'
+    alb.ingress.kubernetes.io/target-type: instance
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/scheme: internet-facing   
+    alb.ingress.kubernetes.io/subnets: subnet-0ce696d6ba2c3692c,subnet-079f98d197f0002dd
+    alb.ingress.kubernetes.io/healthcheck-protocol: HTTP
+    alb.ingress.kubernetes.io/inbound-cidrs: '0.0.0.0/0'
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:ap-northeast-2:418126497077:certificate/6c372db3-ec2a-4e71-a824-eef70dd1133d
+spec:
+  rules:
+    - host: con.jaehyund.ga
+      http:
+        paths:
+         - pathType: Prefix 
+           path: /
+           backend:
+             service:   
+               name: pacman
+               port:
+                 number: 443
