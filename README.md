@@ -35,4 +35,4 @@
   
   # 배포 확인사항 
   
-  ##yml file의 name-space 확인 후 배포
+  ## yml file의 name-space 확인 후 배포
